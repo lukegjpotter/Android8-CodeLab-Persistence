@@ -112,7 +112,7 @@ public class DatabaseInitializer {
         }
     }
 
-    private static Date getTodayPlusDays(int daysAgo) {
+    public static Date getTodayPlusDays(int daysAgo) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DATE, daysAgo);
         return calendar.getTime();

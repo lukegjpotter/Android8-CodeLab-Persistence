@@ -17,13 +17,14 @@
 package com.example.android.persistence.codelab.step4;
 
 import android.app.Application;
-
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+
 import com.example.android.persistence.codelab.db.AppDatabase;
 import com.example.android.persistence.codelab.db.Book;
 import com.example.android.persistence.codelab.db.utils.DatabaseInitializer;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -55,6 +56,7 @@ public class TypeConvertersViewModel extends AndroidViewModel {
     private void subscribeToDbChanges() {
         // Books is a LiveData object so updates are observed.
         // TODO: replace this with a query that finds books borrowed by Mike in the last 24h
-        mBooks = mDb.bookModel().findBooksBorrowedByName("Mike");
+        Date yesterday = DatabaseInitializer.getTodayPlusDays(-1);
+        mBooks = mDb.bookModel().findBooksBorrowedByNameAfter("Mike", yesterday);
     }
 }
