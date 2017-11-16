@@ -17,9 +17,9 @@
 package com.example.android.persistence.codelab.step3;
 
 import android.app.Application;
-
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+
 import com.example.android.persistence.codelab.db.AppDatabase;
 import com.example.android.persistence.codelab.db.Book;
 import com.example.android.persistence.codelab.db.utils.DatabaseInitializer;
@@ -38,11 +38,11 @@ public class BooksBorrowedByUserViewModel extends AndroidViewModel {
         createDb();
 
         // TODO: Assign books to the 'findBooksBorrowedByName' query.
-        books = null;
+        books = mDb.bookModel().findBooksBorrowedByName("Mike");
     }
 
     public void createDb() {
-        mDb = AppDatabase.getInMemoryDatabase(this.getApplication());
+        mDb = AppDatabase.getInMemoryDatabase(getApplication());
 
         // Populate it with initial data
         DatabaseInitializer.populateAsync(mDb);
